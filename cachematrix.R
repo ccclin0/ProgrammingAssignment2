@@ -6,12 +6,19 @@
 ## set the value of the matrix, get the value of the matrix ,set the value of the inverse, get the value of the inverse
 makeCacheMatrix <- function(x = matrix()) {
         inver<-NULL
+        ## set the value of the matrix
         set<-function(y){
                 x<<-y
                 inver<<-NULL                
         }
+        
+        ##get the value of the matrix
         get<-function() x
+        
+        ##set the value of the inverse
         setInverse<-function(inverse) inver <<-inverse
+        
+        ##get the value of the inverse
         getInverse<-function() inver
         list(set=set,get=get, setInverse=setInverse,getInverse=getInverse)
 }
@@ -27,7 +34,10 @@ cacheSolve <- function(x, ...) {
                 return(inver)
         }
         matri<-x$get()
+        ##calculate inverse of matric
         inver<-solve(matri,...)
+        ## set inverse to the object
         x$setInverse(inver)
+        ## return inverse
         inver
 }
